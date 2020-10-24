@@ -18,7 +18,7 @@ const Anecdotes = () => {
 
   return (
     <ul>
-      {anecdotes.map(anecdote =>
+      {anecdotes.sort((a,b) => b.votes - a.votes).map(anecdote =>
         <Anecdote
           key={anecdote.id}
           anecdote={anecdote}
