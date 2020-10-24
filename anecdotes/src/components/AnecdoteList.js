@@ -1,18 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { voteForAnecdote } from '../reducers/anecdoteReducer'
+import Anecdote from './Anecdote'
 
-const Anecdote = ({ anecdote, handleClick }) => {
-  return (
-    <>
-      <div>{anecdote.content}</div>
-      <div>has {anecdote.votes} <button onClick={handleClick}>vote</button>
-      </div>
-    </>
-  )
-}
-
-const Anecdotes = () => {
+const AnecdoteList = () => {
   const dispatch = useDispatch()
   const anecdotes = useSelector(state => state)
 
@@ -28,4 +19,4 @@ const Anecdotes = () => {
   )
 }
 
-export default Anecdotes;
+export default AnecdoteList;

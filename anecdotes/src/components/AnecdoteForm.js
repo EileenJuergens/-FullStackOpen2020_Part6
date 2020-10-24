@@ -4,7 +4,7 @@ import { createAnecdote } from '../reducers/anecdoteReducer'
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch()
-  
+
   const addAnecdote = (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
@@ -13,10 +13,13 @@ const AnecdoteForm = () => {
   }
 
   return (
-    <form onSubmit={addAnecdote}>
-      <input name="anecdote" />
-      <button type="submit">add</button>
-    </form>
+    <>
+      <h2>create new</h2>
+      <form onSubmit={addAnecdote}>
+        <input name="anecdote" />
+        <button type="submit">add</button>
+      </form>
+    </>
   )
 }
 
