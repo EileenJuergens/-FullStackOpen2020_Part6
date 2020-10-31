@@ -5,7 +5,7 @@ import Anecdote from './Anecdote'
 
 const AnecdoteList = () => {
   const dispatch = useDispatch()
-  const anecdotes = useSelector(state => state)
+  const anecdotes = useSelector(state => state.anecdotes)
 
   return (
     <ul>
