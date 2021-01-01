@@ -11,9 +11,9 @@ const Notification = () => {
   }
 
   return (
-    <div style={style}>
+    notification && (<div style={style}>
       {notification}
-    </div>
+    </div>)
   )
 }
 
