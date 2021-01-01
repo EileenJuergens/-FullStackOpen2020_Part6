@@ -7,23 +7,27 @@ import Anecdote from './Anecdote'
 const AnecdoteList = () => {
   const dispatch = useDispatch()
   const anecdotes = useSelector(state => state.anecdotes)
+  const currentFilter = useSelector(state => state.filter)
 
   const handleOnVoteClick = (anecdote) => {
-      dispatch(voteForAnecdote(anecdote.id))
-      dispatch(setVoteNotification(anecdote))
-      setTimeout(() => {
-        dispatch(removeNotification())
-      }, 5000)
+    dispatch(voteForAnecdote(anecdote.id))
+    dispatch(setVoteNotification(anecdote))
+    setTimeout(() => {
+      dispatch(removeNotification())
+    }, 5000)
   }
 
   return (
     <ul>
-      {anecdotes.sort((a,b) => b.votes - a.votes).map(anecdote =>
-        <Anecdote
-          key={anecdote.id}
-          anecdote={anecdote}
-          handleClick={() => handleOnVoteClick(anecdote)} />
-      )}
+      {anecdotes
+        .filter(anecdote => anecdote.content.toLowerCase().includes(currentFilter))
+        .sort((a, b) => b.votes - a.votes)
+        .map(anecdote =>
+          <Anecdote
+            key={anecdote.id}
+            anecdote={anecdote}
+            handleClick={() => handleOnVoteClick(anecdote)} />
+        )}
     </ul>
   )
 }
