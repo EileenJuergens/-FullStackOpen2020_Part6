@@ -1,9 +1,7 @@
 const notificationReducer = (state = '', action) => {
   switch (action.type) {
-    case 'SET_VOTE_NOTIFICATION':
-      return `you voted for '${action.data.content}'`
-    case 'SET_CREATE_NOTIFICATION':
-      return `you created '${action.data}'`
+    case 'SET_NOTIFICATION':
+      return action.data
     case 'REMOVE_NOTIFICATION':
       return '' 
     default:
@@ -11,17 +9,18 @@ const notificationReducer = (state = '', action) => {
   }
 }
 
-export const setVoteNotification = (data) => {
-  return {
-    type: 'SET_VOTE_NOTIFICATION',
-    data
-  }
-}
-
-export const setCreateNotification = (data) => {
-  return {
-    type: 'SET_CREATE_NOTIFICATION',
-    data
+export const setNotification = (data, seconds) => {
+  const milliseconds = seconds*1000
+  return async dispatch => {
+    await dispatch({
+      type: 'SET_NOTIFICATION',
+      data
+    })
+    setTimeout(() => {
+      dispatch({
+        type: 'REMOVE_NOTIFICATION'
+      })
+    }, milliseconds)
   }
 }
 
