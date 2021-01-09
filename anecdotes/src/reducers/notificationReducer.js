@@ -3,7 +3,6 @@ const notificationReducer = (state = '', action) => {
     case 'SET_VOTE_NOTIFICATION':
       return `you voted for '${action.data.content}'`
     case 'SET_CREATE_NOTIFICATION':
-      console.log(action)
       return `you created '${action.data}'`
     case 'REMOVE_NOTIFICATION':
       return '' 
