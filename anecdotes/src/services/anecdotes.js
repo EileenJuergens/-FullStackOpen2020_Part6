@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:3001/anecdotes'
 
-// Fetch all anecdotes
+// Get all anecdotes
 const getAll = async () => {
   const response = await axios.get(baseUrl)
   return response.data
@@ -21,4 +21,18 @@ const createNew = async (content) => {
   return response.data
 }
 
-export default { getAll, createNew }
+// Update vote of specific anecdote
+const updateVote = async (id) => {
+  const allAnecdotes = await axios.get(baseUrl)
+  const anecdote = allAnecdotes.data.find(anecdote => anecdote.id === id)
+
+  const anecdoteObject = {
+    ...anecdote,
+    votes: anecdote.votes+1
+  }
+
+  const response = axios.put(`${baseUrl}/${id}`, anecdoteObject)
+  return response.data
+}
+
+export default { getAll, createNew, updateVote }
