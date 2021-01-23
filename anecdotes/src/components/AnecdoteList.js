@@ -5,8 +5,6 @@ import { setNotification } from '../reducers/notificationReducer'
 import Anecdote from './Anecdote'
 
 const AnecdoteList = (props) => {
-  // const dispatch = useDispatch()
-
   const handleOnVoteClick = (anecdote) => {
     props.voteForAnecdote(anecdote.id)
     props.setNotification(`you voted for '${anecdote.content}'`, 5)
