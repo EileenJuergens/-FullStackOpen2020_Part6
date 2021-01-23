@@ -13,9 +13,6 @@ const AnecdoteForm = (props) => {
 
     props.createAnecdote(anecdoteContent)
     props.setNotification(`you created '${anecdoteContent}'`, 5)
-    setTimeout(() => {
-      props.removeNotification()
-    }, 5000)
   }
 
   return (
@@ -29,11 +26,7 @@ const AnecdoteForm = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    notifications: state.notifications,
-  }
-}
+const mapStateToProps = (state) => state
 
 const mapDispatchToProps = {
   createAnecdote,
